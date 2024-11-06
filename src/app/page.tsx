@@ -79,7 +79,7 @@ export default function Home() {
   }, [realvalue, labels]);
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
+    const handleMouseMove = (event: MouseEvent) => {
       setMousePosition({
         x: event.clientX,
         y: event.clientY,
