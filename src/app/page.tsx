@@ -6,8 +6,8 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 export default function Home() {
-  const [realvalue, setRealValue] = useState<number[]>([-200, -200, 0, 1000]);
-  const [labels, setLabels] = useState<number[]>([-200, -200, 0, 1000]);
+  const [realvalue, setRealValue] = useState<number[]>([-50, -50, 0, 50, 100]);
+  const [labels, setLabels] = useState<number[]>([-50, -50, 0, 50, 100]);
   const [disvalue, setDisvalue] = useState<number | 0>(0); // State for displayed value
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [mousedisval, setMouseDisVal] = useState<number | 0>(0); // State for displayed value
@@ -53,8 +53,8 @@ export default function Home() {
         scales: {
           y: {
             beginAtZero: false, // Set to false to allow negative values
-            min: -1000, // Minimum value for the Y-axis
-            max: 1000, // Maximum value for the Y-axis
+            min: -100, // Minimum value for the Y-axis
+            max: 100, // Maximum value for the Y-axis
             ticks: {
               callback: (value) => value === 0 ? '0' : value,
               display: false // Change to true to display ticks
@@ -93,28 +93,29 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (mousePosition.x >= 666 && mousePosition.x <= 1240) {
+    if (mousePosition.x >= 520 && mousePosition.x <= 960) {
       setDisvalue(parseFloat((200 * (mousePosition.x - 666) / (1240 - 666) - 237).toFixed(2)));
-    } else if (mousePosition.x >= 1240) {
-      setDisvalue(parseFloat((1000 * (mousePosition.x - 1240) / (1818 - 1240)).toFixed(2)));
+    } else if (mousePosition.x > 960) {
+      setDisvalue(parseFloat((1000 * (mousePosition.x - 960) / (1818 - 960)).toFixed(2)));
       if (mousePosition.x >= 1818) {
         setDisvalue(1000);
       }
-    } else if (mousePosition.x < 666) {
+    } else if (mousePosition.x < 520) {
       setDisvalue(-200);
     }
   }, [mousePosition.x]);
 
   useEffect(() => {
     console.log("disvadfasdf", disvalue);
-    if (disvalue >= -237 || disvalue <= 0) {
+    if (disvalue >= -200 || disvalue <= 0) {
       setMouseDisVal(parseFloat((2 * (disvalue + 200) / 237 + 237).toFixed(2)));
     }
     if ( disvalue > 0){
       setMouseDisVal(parseFloat(((500 -239) * disvalue / 1000 + 239).toFixed(2)));
     }
   });
-
+  console.log("ddddddddddd", mousePosition.x);
+  
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <div className="mt-10 mb-3">
@@ -185,11 +186,11 @@ export default function Home() {
           </>
         )}
       </div>
-      { (disvalue <= 30 && disvalue >= -20) ? (
+      { (disvalue <= -120 && disvalue >= -140) ? (
         <div
           style={{
             position: 'absolute',
-            left: '64.4%', // Center the circle horizontally
+            left: '49.4%', // Center the circle horizontally
             top: '49.5%', // Adjust as needed to align with the X-axis
             width: '30px', // Diameter of the outer circle
             height: '30px', // Diameter of the outer circle
@@ -204,7 +205,7 @@ export default function Home() {
         <div
           style={{
             position: 'absolute',
-            left: '64.8%', // Center the circle horizontally
+            left: '49.6%', // Center the circle horizontally
             top: '50.4%', // Adjust as needed to align with the X-axis
             width: '20px', // Diameter of the outer circle
             height: '20px', // Diameter of the outer circle
@@ -216,12 +217,12 @@ export default function Home() {
           }}
         /> 
       )}
-      { (disvalue <= -220 && disvalue >= -250) ? (
+      { (mousePosition.x < 530 && mousePosition.x >= 510) ? (
         <div
           style={{
             position: 'absolute',
-            left: '34.3%', // Center the circle horizontally
-            top: '55.5%', // Adjust as needed to align with the X-axis
+            left: '26.5%', // Center the circle horizontally
+            top: '65%', // Adjust as needed to align with the X-axis
             width: '30px', // Diameter of the outer circle
             height: '30px', // Diameter of the outer circle
             borderRadius: '50%',
@@ -235,8 +236,8 @@ export default function Home() {
         <div
           style={{
             position: 'absolute',
-            left: '34.5%', // Center the circle horizontally
-            top: '56%', // Adjust as needed to align with the X-axis
+            left: '26.8%', // Center the circle horizontally
+            top: '65%', // Adjust as needed to align with the X-axis
             width: '20px', // Diameter of the outer circle
             height: '20px', // Diameter of the outer circle
             borderRadius: '50%',
