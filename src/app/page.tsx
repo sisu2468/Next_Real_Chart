@@ -6,8 +6,9 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 export default function Home() {
-  const [realvalue, setRealValue] = useState<number[]>([-50, -50, 0, 50, 100]);
-  const [labels, setLabels] = useState<number[]>([-50, -50, 0, 50, 100]);
+  const [realvalue] = useState<number[]>([-50, -50, 0, 50, 100]);
+  const [labels] = useState<number[]>([-50, -50, 0, 50, 100]);
+
   const [disvalue, setDisvalue] = useState<number | 0>(0); // State for displayed value
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [mousedisval, setMouseDisVal] = useState<number | 0>(0); // State for displayed value
